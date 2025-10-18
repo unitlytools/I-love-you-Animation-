@@ -70,7 +70,7 @@ html, body {
 /* name shown below animation */
 .custom-name {
   text-align: center;
-  font-size: 60%;
+  font-size: 80px;
   color: #763C8C;
   margin-top: 20px;
   font-weight: bold;
@@ -78,9 +78,29 @@ html, body {
 }
 
 /* action buttons */
-.add-name-btn, .download-btn {
+.add-name-btn {
   position: fixed;
   right: 1rem;
+  bottom: 3.5rem;
+  font-size: 1.3rem;
+  color: #00ffff;
+  text-decoration: underline;
+  cursor: pointer;
+  background: none;
+  border: none;
+  padding: 0;
+  z-index: 10002;
+  transition: 0.2s;
+}
+
+.add-name-btn:hover {
+  color: #ff3366;
+}
+
+.download-btn {
+  position: fixed;
+  right: 1rem;
+  bottom: 6.5rem;
   padding: 8px 14px;
   border: none;
   border-radius: 6px;
@@ -90,6 +110,10 @@ html, body {
   font-size: 1.3rem;
   transition: 0.2s;
   z-index: 10002;
+}
+
+.download-btn:hover {
+  background-color: #5b2a68;
 }
 
 .add-name-btn:hover, .download-btn:hover { background-color: #5b2a68; }
