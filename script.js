@@ -358,3 +358,46 @@ const toggleSound = () => {
   };
 };
 el.sound.addEventListener('click', toggleSound());
+// ===== Custom Name Popup + ZIP Download System =====
+
+// open popup
+document.querySelector('.add-name-btn').addEventListener('click', () => {
+  document.getElementById('popup').style.display = 'flex';
+});
+
+// close popup
+document.getElementById('closePopup').addEventListener('click', () => {
+  document.getElementById('popup').style.display = 'none';
+});
+
+// save name
+document.getElementById('saveName').addEventListener('click', () => {
+  const name = document.getElementById('nameInput').value.trim();
+  if (name) {
+    document.getElementById('customName').innerText = name;
+  }
+  document.getElementById('popup').style.display = 'none';
+});
+
+// ===== ZIP Download =====
+document.getElementById('downloadZip').addEventListener('click', async () => {
+  const htmlContent = document.documentElement.outerHTML;
+  const cssContent = await fetch('./style.css').then(res => res.text());
+  const jsContent = await fetch('./script.js').then(res => res.text());
+
+  const zip = new JSZip();
+  zip.file("index.html", htmlContent);
+  zip.file("style.css", cssContent);
+  zip.file("script.js", jsContent);
+
+  const blob = await zip.generateAsync({ type: "blob" });
+  const a = document.createElement("a");
+  a.href = URL.createObjectURL(blob);
+  a.download = "I_Love_You_Animation.zip";
+  a.click();
+});
+
+// ===== Load JSZip =====
+const jsZipScript = document.createElement('script');
+jsZipScript.src = "https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js";
+document.head.appendChild(jsZipScript);
