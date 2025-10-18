@@ -70,7 +70,7 @@ html, body {
 /* name shown below animation */
 .custom-name {
   text-align: center;
-  font-size: 2rem;
+  font-size: 60%;
   color: #763C8C;
   margin-top: 20px;
   font-weight: bold;
