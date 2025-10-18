@@ -59,14 +59,25 @@ html, body {
 .sound--off {
   text-decoration: line-through;
 }
+/* ---------- CUSTOM NAME / POPUP / BUTTONS ---------- */
+
+/* make sure animation sits below popup */
+.container {
+  z-index: 1; /* lower than popup */
+  position: relative;
+}
+
+/* name shown below animation */
 .custom-name {
   text-align: center;
   font-size: 2rem;
   color: #763C8C;
   margin-top: 20px;
   font-weight: bold;
+  z-index: 2;
 }
 
+/* action buttons */
 .add-name-btn, .download-btn {
   position: fixed;
   right: 1rem;
@@ -77,51 +88,69 @@ html, body {
   color: white;
   background-color: #763C8C;
   font-size: 1.3rem;
-  transition: 0.3s;
+  transition: 0.2s;
+  z-index: 10002;
 }
 
-.add-name-btn:hover, .download-btn:hover {
-  background-color: #5b2a68;
-}
-
+.add-name-btn:hover, .download-btn:hover { background-color: #5b2a68; }
 .add-name-btn { bottom: 3.5rem; }
 .download-btn { bottom: 6.5rem; }
 
+/* popup overlay should be above everything and capture clicks */
 .popup {
   position: fixed;
   top: 0; left: 0;
   width: 100%; height: 100%;
   background: rgba(0,0,0,0.6);
-  display: none;
+  display: none;            /* show via JS: flex */
   justify-content: center;
   align-items: center;
+  z-index: 10001;           /* VERY high so it sits above mo.js animation */
+  pointer-events: auto;     /* ensure it receives clicks */
 }
 
+/* popup box must accept pointer events (so input & buttons work) */
 .popup-content {
   background: #fff;
-  padding: 20px;
+  padding: 18px;
   border-radius: 10px;
   text-align: center;
+  pointer-events: auto;
+  box-shadow: 0 8px 30px rgba(0,0,0,0.35);
+  min-width: 280px;
 }
 
+.popup-content h3 {
+  color: #763C8C;
+  margin-bottom: 8px;
+}
 .popup-content input {
   padding: 8px;
-  font-size: 1.2rem;
-  width: 80%;
+  font-size: 1.1rem;
+  width: 92%;
   margin-bottom: 10px;
+  border-radius: 6px;
+  border: 1px solid #ddd;
 }
 
+.popup-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+}
 .popup-buttons button {
-  margin: 5px;
-  padding: 8px 14px;
-  font-size: 1.2rem;
+  padding: 8px 12px;
+  font-size: 1rem;
   border: none;
   background-color: #763C8C;
-  color: white;
+  color: #fff;
   border-radius: 6px;
   cursor: pointer;
 }
+.popup-buttons button:hover { background-color: #5b2a68; }
 
-.popup-buttons button:hover {
-  background-color: #5b2a68;
+/* small accessibility: focus outline */
+.popup-content input:focus, .popup-buttons button:focus {
+  outline: 3px solid rgba(118,60,140,0.18);
+  outline-offset: 2px;
 }
